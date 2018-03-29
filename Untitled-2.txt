@@ -1,0 +1,26 @@
+<?php
+$username=filter_input(INPUT_POST, 'username');
+$address=filter_input(INPUT_POST, 'address');
+$tel=filter_input(INPUT_POST, 'telephone');
+
+             $host="localhost";
+             $dbusername="root";
+             $dbpassword="";
+             $dbname="simple";
+
+        //creating connection
+
+        $conn=new mysqli($host, $dbusername, $dbpassword, $dbname);
+
+        if(mysqli_connect_error()){
+            die('connect error('.mysqli_connect_error().')'.mysqli_connect_error());
+        }
+        else{
+            $sql= "INSERT INTO form (username, address, telephone) VALUES ('$username', '$address', '$tel')";
+        }
+        if($conn->query($sql)){
+            echo "New record inserted successfully";
+        }
+     
+    $conn->close();
+ ?>  
